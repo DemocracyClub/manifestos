@@ -1,0 +1,72 @@
+Downloading/unpacking xapian
+  Getting page http://pypi.python.org/simple/xapian
+  Could not fetch URL http://pypi.python.org/simple/xapian: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/xapian when looking for download links for xapian
+  Getting page http://pypi.python.org/simple/
+  URLs to search for versions for xapian:
+  * http://pypi.python.org/simple/xapian/
+  Getting page http://pypi.python.org/simple/xapian/
+  Could not fetch URL http://pypi.python.org/simple/xapian/: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/xapian/ when looking for download links for xapian
+  Could not find any downloads that satisfy the requirement xapian
+No distributions at all found for xapian
+Exception information:
+Traceback (most recent call last):
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/basecommand.py", line 115, in main
+    self.run(options, args)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/commands/install.py", line 155, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle, bundle=self.bundle)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/req.py", line 823, in install_files
+    url = finder.find_requirement(req_to_install, upgrade=self.upgrade)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/index.py", line 117, in find_requirement
+    raise DistributionNotFound('No distributions at all found for %s' % req)
+DistributionNotFound: No distributions at all found for xapian
+------------------------------------------------------------
+/Users/sym/Projects/manifestos/bin/pip run on Thu Apr 22 18:34:58 2010
+Downloading/unpacking v
+  Getting page http://pypi.python.org/simple/v
+Exception:
+Traceback (most recent call last):
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/basecommand.py", line 115, in main
+    self.run(options, args)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/commands/install.py", line 155, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle, bundle=self.bundle)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/req.py", line 823, in install_files
+    url = finder.find_requirement(req_to_install, upgrade=self.upgrade)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/index.py", line 55, in find_requirement
+    page = self._get_page(main_index_url, req)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/index.py", line 282, in _get_page
+    return HTMLPage.get_page(link, req, cache=self.cache)
+  File "/Users/sym/Projects/manifestos/lib/python2.6/site-packages/pip-0.6.3-py2.6.egg/pip/index.py", line 363, in get_page
+    resp = urllib2.urlopen(url)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 124, in urlopen
+    return _opener.open(url, data, timeout)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 395, in open
+    response = meth(req, response)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 508, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 427, in error
+    result = self._call_chain(*args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 367, in _call_chain
+    result = func(*args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 603, in http_error_302
+    return self.parent.open(new, timeout=req.timeout)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 389, in open
+    response = self._open(req, data)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 407, in _open
+    '_open', req)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 367, in _call_chain
+    result = func(*args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 1146, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 1119, in do_open
+    r = h.getresponse()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 974, in getresponse
+    response.begin()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 391, in begin
+    version, status, reason = self._read_status()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 349, in _read_status
+    line = self.fp.readline()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/socket.py", line 397, in readline
+    data = recv(1)
+KeyboardInterrupt

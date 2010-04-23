@@ -1,0 +1,9 @@
+<li class="result">
+  {{ result.instance.content|striptags|truncatewords:100|safe }}...<a href="{% url element result.instance.document.pk result.instance.get_root.pk %}#{{ result.instance.pk }}">more</a>
+  <ul class="sections">
+    (<strong>Found in</strong>
+  {% for p in result.instance.get_ancestors %}
+    <li> > <a href="{% url element result.instance.document.pk p.pk %}">{{ p.content }}</a></li>
+  {% endfor %})
+  </ul>
+</li>

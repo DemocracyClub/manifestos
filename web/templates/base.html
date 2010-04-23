@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <style type="text/css" media="screen">
+      .el_wrapper {clear:both;}
+      .el {
+        width:40%;
+        float:left;
+        overflow:auto;
+      }
+      .el_info {
+        width:40%;
+        float:left;
+        overflow:auto;
+      }
+      
+      #libdem, #labour {
+        float:left;
+        width:32%;
+        border-right:1px dotted #999;
+      }
+      
+      .result {
+        border-bottom:1px dotted #999;
+        overflow:auto;
+      }
+      
+      .sections { 
+        margin:10px 0; 
+        padding:0;
+        font-size:12px;
+        }
+      
+      .sections li {
+        display:inline;
+        margin:0;
+        padding:0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/">Documents</a> | {# <a href="/promises">Promises</a> | #} <a href="/search">Search</a>
+    <hr />
+    
+    {% block content %}
+      
+    {% endblock %}
+    
+  </body>
+</html>

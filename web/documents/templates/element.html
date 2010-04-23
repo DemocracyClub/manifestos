@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load comments %}
+{% load humanize %}
+{% block content %}
+<h1>{{ doc.title }}</h1>
+
+<h2>{{ element.content }}</h2>
+{# <div>This Section: #}
+{# <ul>   #}
+{# {% with element.get_prev_sibling as previous %} #}
+{#   {% if previous.pk %}   #}
+{#     <li><a href="{% url element doc.pk previous.pk %}">{{ previous.content }}</a></li> #}
+{#   {% endif %} #}
+{# {% endwith %} #}
+{#  #}
+{# {% with element.get_next_sibling as next %} #}
+{#   {% if next.pk %}   #}
+{#     <li><a href="{% url element doc.pk next.pk %}">{{ next.content }}</a></li> #}
+{#   {% endif %} #}
+{# {% endwith %} #}
+
+{# </ul></div> #}
+
+{% for sib in element.get_descendants  %}
+<div class="el_wrapper">
+ <span id="{{ sib.pk }}" class="el">{{ sib.content|safe }}</span>
+
+ <div class="el_info">
+   
+   
+   {# {% if sib.promise.all %} #}
+   {#  This is a Promise #}
+   {# {% else %} #}
+   {# {% load promises %} #}
+   {# {% add_promise sib %} #}
+   {#  #}
+   {# {% endif %} #}
+   
+   
+   {% get_comment_list for sib as comment_list %}
+   {% if comment_list %}
+     <div class="el_comments">
+       {% for comment in comment_list %}
+             <h4>{{ comment.user }}</h4>
+             {{ comment.submit_date|date:"H.i" }} {{ comment.submit_date|naturalday|title }}
+             {{ comment.comment }}
+       {% endfor %}    
+     </div>
+   {% endif %}
+  
+ </div>
+ </div>
+{% endfor %}
+{% endblock %}

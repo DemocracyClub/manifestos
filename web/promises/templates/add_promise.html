@@ -1,0 +1,7 @@
+<form method="POST" action="{% url add_promises %}" class="promise_add_form">
+  <input type="hidden" name="promise_item_id" value="{{ ct.name }}_{{ promise_object.pk }}" class="promise_id">
+  <input type="hidden" name="content_type" value="{{ ct.name }}" class="content_type">
+  <input type="hidden" name="object_id" value="{{ promise_object.pk }}" class="object_id">
+
+  <input type="submit" name="add" value="This is a Promise" class="action">
+</form>

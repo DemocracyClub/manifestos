@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ doc.title }}</h1>
+<ul>
+{% for heading in headings %}
+  <li><a href="{% url element doc.pk heading.pk %}">{{ heading }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

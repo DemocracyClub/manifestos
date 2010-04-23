@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for promise in promises %}
+      <p><a href="{% url element promise.content_object.document.pk promise.content_object.get_root.pk  %}#{{ promise.content_object.pk }}">{{ promise.content_object.content }}</a></p>
+    {% endfor %}
+{% endblock %}
