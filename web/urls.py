@@ -21,4 +21,5 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'', include('documents.urls')),
     (r'', include('promises.urls')),
+    (r'^about/$', 'django.views.generic.simple.direct_to_template', {'template': 'about.html'}),
 )

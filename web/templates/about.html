@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2 id="about">About</h2>
+
+  <p>This project has been rushed together to help me search the manifestos during the TV debates in real time.</p>
+
+  <p>I don&#8217;t know how interesting it will be in the long term, but in theory I like the idea of a permanent record of what was said.</p>
+
+  <h3 id="adding_more_documents">Adding more documents</h3>
+
+  <p>I want to add every manifesto I can fine here.  I have written a parser for parsing HTML documents in to a hierarchical model.</p>
+
+  <p>This means I should be able to add any HTML document to the search/browse pages easily.  </p>
+
+  <p>If you would like to convert your own documents, please feel free to check out the project on <a href="http://github.com/symroe/manifestos/">github</a>.</p>
+
+  <p>The format is just HTML.  I expect every main heading to be an h1 tag.  Every heading tag will become a &#8216;node&#8217; in the document tree, with every non-heading element becoming a child (and lief) of that heading.  The parser knows what &#8216;level&#8217; a heading should be, so if an h2 follows an h3, then the h2 will become an uncle (a sibling of the parent) of the h3.</p>
+  
+{% endblock %}
