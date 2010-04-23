@@ -1,7 +1,7 @@
 import os
 WEB_ROOT = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = "/".join(WEB_ROOT.split('/')[:-1])
-print PROJECT_ROOT
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
