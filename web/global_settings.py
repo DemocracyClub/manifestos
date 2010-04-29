@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'documents',
     'promises',
     'djapian',
+    'taggit',
 ]
 
 DJAPIAN_DATABASE_PATH = PROJECT_ROOT + '/xapdex.db/'

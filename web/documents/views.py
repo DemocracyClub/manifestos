@@ -1,6 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
+from django.core.urlresolvers import reverse
 
 from models import Document, Element
 from forms import SearchForm
@@ -43,32 +44,46 @@ def element(request, docid, elid):
     )  
 
 
-def search(request):
+def add_tag(request):
+    if not request.POST:
+        return HttpResponseRedirect('/')
+    
+    element = Element.objects.get(pk=request.POST.get('element'))
+    element.tags.add(request.POST.get('tags'))
+    element.save()
+    print request.META['HTTP_REFERER']
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    
+    
+def search(request, query=None):
     results = None
     libdem_results = labour_results = tory_results = None
     if request.POST:
         q = request.POST.get('q')
-        indexer = Element.indexer
-        libdem_results = indexer.search("%s party:libdem" % q)
-        labour_results = indexer.search("%s party:labour" % q)
-        tory_results = indexer.search("%s party:tory" % q)
+        return HttpResponseRedirect(reverse('search', args=[q]))
 
-        labour_results=labour_results.flags(xapian.QueryParser.FLAG_PHRASE\
-                        | xapian.QueryParser.FLAG_BOOLEAN\
-                        | xapian.QueryParser.FLAG_LOVEHATE
-                        | xapian.QueryParser.FLAG_WILDCARD
-                        )
-        libdem_results=libdem_results.flags(xapian.QueryParser.FLAG_PHRASE\
-                        | xapian.QueryParser.FLAG_BOOLEAN\
-                        | xapian.QueryParser.FLAG_LOVEHATE
-                        | xapian.QueryParser.FLAG_WILDCARD
-                        )
-        tory_results=tory_results.flags(xapian.QueryParser.FLAG_PHRASE\
-                        | xapian.QueryParser.FLAG_BOOLEAN\
-                        | xapian.QueryParser.FLAG_LOVEHATE
-                        | xapian.QueryParser.FLAG_WILDCARD
-                        )
-    form = SearchForm(request.POST)
+    q = query
+    indexer = Element.indexer
+    libdem_results = indexer.search("%s party:libdem" % q)
+    labour_results = indexer.search("%s party:labour" % q)
+    tory_results = indexer.search("%s party:tory" % q)
+
+    labour_results=labour_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                    | xapian.QueryParser.FLAG_BOOLEAN\
+                    | xapian.QueryParser.FLAG_LOVEHATE
+                    | xapian.QueryParser.FLAG_WILDCARD
+                    )
+    libdem_results=libdem_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                    | xapian.QueryParser.FLAG_BOOLEAN\
+                    | xapian.QueryParser.FLAG_LOVEHATE
+                    | xapian.QueryParser.FLAG_WILDCARD
+                    )
+    tory_results=tory_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                    | xapian.QueryParser.FLAG_BOOLEAN\
+                    | xapian.QueryParser.FLAG_LOVEHATE
+                    | xapian.QueryParser.FLAG_WILDCARD
+                    )
+    form = SearchForm(data={'q' : query})
 
     
     return render_to_response(

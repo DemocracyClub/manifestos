@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load comments %}
 {% load humanize %}
+{% load tag_form %}
 {% block content %}
 <h1>{{ doc.title }}</h1>
 
@@ -35,7 +36,7 @@
    {# {% add_promise sib %} #}
    {#  #}
    {# {% endif %} #}
-   
+   {% add_tag sib %}
    
    {% get_comment_list for sib as comment_list %}
    {% if comment_list %}
