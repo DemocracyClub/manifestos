@@ -1,0 +1,6 @@
+<strong>Tags:</strong> {{ element.tags.all|join:", " }}
+
+<form action="/add_tag/" method="POST" accept-charset="utf-8">
+  {{ form.tags }}<input type="submit" value="Add">
+  <input type="hidden" name="element" value="{{ element.pk }}" id="element">
+</form>
