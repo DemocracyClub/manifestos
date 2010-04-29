@@ -1,7 +1,13 @@
 from django.db import models
 from django.contrib.contenttypes import generic
 
+from django.db import models
+
+from taggit.managers import TaggableManager
+
 from treebeard.mp_tree import MP_Node
+
+
 
 from promises.models import Promise
 
@@ -18,5 +24,7 @@ class Element(MP_Node):
     tag = models.CharField(blank=True, max_length=20)
     promise = generic.GenericRelation(Promise)
     
+    tags = TaggableManager()
+    
     def __unicode__(self):
-        return self.content
+        return self.content.decode('utf8')
