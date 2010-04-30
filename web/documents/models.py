@@ -27,4 +27,4 @@ class Element(MP_Node):
     tags = TaggableManager()
     
     def __unicode__(self):
-        return self.content.decode('utf8')
+        return "element"

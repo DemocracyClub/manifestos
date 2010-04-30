@@ -62,28 +62,32 @@ def search(request, query=None):
         q = request.POST.get('q')
         return HttpResponseRedirect(reverse('search', args=[q]))
 
-    q = query
-    indexer = Element.indexer
-    libdem_results = indexer.search("%s party:libdem" % q)
-    labour_results = indexer.search("%s party:labour" % q)
-    tory_results = indexer.search("%s party:tory" % q)
+    if query:
+        form = SearchForm(data={'q' : query})
 
-    labour_results=labour_results.flags(xapian.QueryParser.FLAG_PHRASE\
-                    | xapian.QueryParser.FLAG_BOOLEAN\
-                    | xapian.QueryParser.FLAG_LOVEHATE
-                    | xapian.QueryParser.FLAG_WILDCARD
-                    )
-    libdem_results=libdem_results.flags(xapian.QueryParser.FLAG_PHRASE\
-                    | xapian.QueryParser.FLAG_BOOLEAN\
-                    | xapian.QueryParser.FLAG_LOVEHATE
-                    | xapian.QueryParser.FLAG_WILDCARD
-                    )
-    tory_results=tory_results.flags(xapian.QueryParser.FLAG_PHRASE\
-                    | xapian.QueryParser.FLAG_BOOLEAN\
-                    | xapian.QueryParser.FLAG_LOVEHATE
-                    | xapian.QueryParser.FLAG_WILDCARD
-                    )
-    form = SearchForm(data={'q' : query})
+        q = query
+        indexer = Element.indexer
+        libdem_results = indexer.search("%s party:libdem" % q)
+        labour_results = indexer.search("%s party:labour" % q)
+        tory_results = indexer.search("%s party:tory" % q)
+
+        labour_results=labour_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                        | xapian.QueryParser.FLAG_BOOLEAN\
+                        | xapian.QueryParser.FLAG_LOVEHATE
+                        | xapian.QueryParser.FLAG_WILDCARD
+                        )
+        libdem_results=libdem_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                        | xapian.QueryParser.FLAG_BOOLEAN\
+                        | xapian.QueryParser.FLAG_LOVEHATE
+                        | xapian.QueryParser.FLAG_WILDCARD
+                        )
+        tory_results=tory_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                        | xapian.QueryParser.FLAG_BOOLEAN\
+                        | xapian.QueryParser.FLAG_LOVEHATE
+                        | xapian.QueryParser.FLAG_WILDCARD
+                        )
+    else:
+        form = SearchForm()
 
     
     return render_to_response(
