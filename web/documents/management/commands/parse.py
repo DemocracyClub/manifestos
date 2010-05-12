@@ -23,7 +23,7 @@ class Command(BaseCommand):
     def handle(self, **options):
         party = options.get('party')
         # Hard code the file path for now.
-        f_path = "manifestos/2010/%s/html.html" % (settings.PROJECT_ROOT, party,)
+        f_path = "%s/manifestos/2010/%s/html.html" % (settings.PROJECT_ROOT, party,)
         f = codecs.open(f_path, 'r', 'utf8')
         d = BeautifulSoup.BeautifulSoup(f.read())
         

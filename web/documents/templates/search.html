@@ -4,9 +4,20 @@
   <form method="POST">{{ form }}
     <input type="submit" name="some_name" value="Search" id="some_name">
     </form>
+    <div class="results">
     
-    
-    <div id="libdem">
+    <div id="coalition" class="col">
+      <h2>Coalition</h2>
+      {% if coalition_results %}
+        <ul>
+        {% for result in coalition_results %}
+          {% include "result.html" %}
+        {% endfor %}
+        </ul>
+      {% endif %}
+      
+    </div>
+    <div id="libdem" class="col">
       <h2>Lib Dem</h2>
       {% if libdem_results %}
         <ul>
@@ -18,7 +29,19 @@
       
     </div>
     
-    <div id="labour">
+    <div id="tory" class="col">
+      <h2>Tory</h2>
+      {% if tory_results %}
+        <ul>
+        {% for result in tory_results %}
+          {% include "result.html" %}
+        {% endfor %}
+        </ul>
+      {% endif %}
+      
+    </div>
+
+    <div id="labour" class="col">
       <h2>Labour</h2>
       {% if labour_results %}
         <ul>
@@ -30,18 +53,19 @@
       
     </div>
 
-    <div id="tory">
-      <h2>Tory</h2>
-      {% if tory_results %}
+    <div id="green" class="col">
+      <h2>Green</h2>
+      {% if green_results %}
         <ul>
-        {% for result in tory_results %}
+        {% for result in green_results %}
           {% include "result.html" %}
         {% endfor %}
         </ul>
       {% endif %}
       
     </div>
+
     
     
-    
+    </div>
 {% endblock %}

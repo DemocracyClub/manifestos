@@ -57,7 +57,7 @@ def add_tag(request):
     
 def search(request, query=None):
     results = None
-    libdem_results = labour_results = tory_results = None
+    coalition_results = green_results = libdem_results = labour_results = tory_results = None
     if request.POST:
         q = request.POST.get('q')
         return HttpResponseRedirect(reverse('search', args=[q]))
@@ -68,9 +68,21 @@ def search(request, query=None):
         q = query
         indexer = Element.indexer
         libdem_results = indexer.search("%s party:libdem" % q)
+        coalition_results = indexer.search("%s party:coalition" % q)
+        green_results = indexer.search("%s party:coalition" % q)
         labour_results = indexer.search("%s party:labour" % q)
         tory_results = indexer.search("%s party:tory" % q)
 
+        coalition_results=coalition_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                        | xapian.QueryParser.FLAG_BOOLEAN\
+                        | xapian.QueryParser.FLAG_LOVEHATE
+                        | xapian.QueryParser.FLAG_WILDCARD
+                        )
+        green_results=green_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                        | xapian.QueryParser.FLAG_BOOLEAN\
+                        | xapian.QueryParser.FLAG_LOVEHATE
+                        | xapian.QueryParser.FLAG_WILDCARD
+                        )
         labour_results=labour_results.flags(xapian.QueryParser.FLAG_PHRASE\
                         | xapian.QueryParser.FLAG_BOOLEAN\
                         | xapian.QueryParser.FLAG_LOVEHATE
@@ -94,6 +106,8 @@ def search(request, query=None):
       'search.html', 
       {
           'form' : form,
+          'green_results' : green_results,
+          'coalition_results' : coalition_results,
           'libdem_results' : libdem_results,
           'labour_results' : labour_results,
           'tory_results' : tory_results,
