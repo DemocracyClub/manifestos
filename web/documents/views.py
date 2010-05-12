@@ -69,7 +69,7 @@ def search(request, query=None):
         indexer = Element.indexer
         libdem_results = indexer.search("%s party:libdem" % q)
         coalition_results = indexer.search("%s party:coalition" % q)
-        green_results = indexer.search("%s party:coalition" % q)
+        green_results = indexer.search("%s party:green" % q)
         labour_results = indexer.search("%s party:labour" % q)
         tory_results = indexer.search("%s party:tory" % q)
 
