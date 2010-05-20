@@ -57,7 +57,7 @@ def add_tag(request):
     
 def search(request, query=None):
     results = None
-    coalition_results = green_results = libdem_results = labour_results = tory_results = None
+    coalition_results = green_results = libdem_results = labour_results = tory_results, coalition_final_results = None
     if request.POST:
         q = request.POST.get('q')
         return HttpResponseRedirect(reverse('search', args=[q]))
@@ -68,7 +68,7 @@ def search(request, query=None):
         q = query
         indexer = Element.indexer
         libdem_results = indexer.search("%s party:libdem" % q)
-        coalition_results = indexer.search("%s party:coalition" % q)
+        coalition_results = indexer.search("%s party:coalitiona" % q)
         coalition_final_results = indexer.search("%s party:coalition_final" % q)
         green_results = indexer.search("%s party:green" % q)
         labour_results = indexer.search("%s party:labour" % q)
