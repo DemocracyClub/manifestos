@@ -69,11 +69,17 @@ def search(request, query=None):
         indexer = Element.indexer
         libdem_results = indexer.search("%s party:libdem" % q)
         coalition_results = indexer.search("%s party:coalition" % q)
+        coalition_final_results = indexer.search("%s party:coalition_final" % q)
         green_results = indexer.search("%s party:green" % q)
         labour_results = indexer.search("%s party:labour" % q)
         tory_results = indexer.search("%s party:tory" % q)
 
         coalition_results=coalition_results.flags(xapian.QueryParser.FLAG_PHRASE\
+                        | xapian.QueryParser.FLAG_BOOLEAN\
+                        | xapian.QueryParser.FLAG_LOVEHATE
+                        | xapian.QueryParser.FLAG_WILDCARD
+                        )
+        coalition_final_results=coalition_final_results.flags(xapian.QueryParser.FLAG_PHRASE\
                         | xapian.QueryParser.FLAG_BOOLEAN\
                         | xapian.QueryParser.FLAG_LOVEHATE
                         | xapian.QueryParser.FLAG_WILDCARD
@@ -108,6 +114,7 @@ def search(request, query=None):
           'form' : form,
           'green_results' : green_results,
           'coalition_results' : coalition_results,
+          'coalition_final_results' : coalition_final_results,
           'libdem_results' : libdem_results,
           'labour_results' : labour_results,
           'tory_results' : tory_results,

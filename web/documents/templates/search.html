@@ -17,6 +17,17 @@
       {% endif %}
       
     </div>
+    <div id="coalition_final" class="col">
+      <h2>Coalition Final</h2>
+      {% if coalition_final_results %}
+        <ul>
+        {% for result in coalition_final_results %}
+          {% include "result.html" %}
+        {% endfor %}
+        </ul>
+      {% endif %}
+      
+    </div>
     <div id="libdem" class="col">
       <h2>Lib Dem</h2>
       {% if libdem_results %}
